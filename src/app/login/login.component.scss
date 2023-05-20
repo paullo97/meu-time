@@ -19,9 +19,6 @@
     justify-content: center;
     overflow: hidden;
 
-    // background: url('https://www.api-football.com/public/img/home1/hero-banner.png') no-repeat;
-    // background-size: 50%;
-
     .background
     {
         position: absolute;
@@ -62,6 +59,12 @@
                 {
                     display: flex;
                     flex-direction: row-reverse;
+
+                    mat-spinner
+                    {
+                       width: 45px !important;
+                       height: 45px !important;
+                    }
                 }
             }
         }

@@ -25,7 +25,8 @@
                         </button>
                     </mat-form-field>
                     <div class="button">
-                        <button mat-flat-button color="primary">Acessar</button>
+                        <button *ngIf="(loading$ | async) === false" mat-flat-button color="primary" (click)="verifyKey()">Acessar</button>
+                        <mat-spinner *ngIf="loading$ | async"></mat-spinner>
                     </div>
 
                 </div>
