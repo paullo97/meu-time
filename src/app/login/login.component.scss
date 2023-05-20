@@ -1,0 +1,83 @@
+// .background
+// {
+//     position: absolute;
+
+//     display: flex;
+//     justify-content: space-between;
+
+//     img
+//     {
+//         width: 40%;
+//     }
+// }
+
+.container
+{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    // background: url('https://www.api-football.com/public/img/home1/hero-banner.png') no-repeat;
+    // background-size: 50%;
+
+    .background
+    {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        left: 0;
+
+        img
+        {
+            width: 40%;
+        }
+
+        .reverse
+        {
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+    }
+
+    .card
+    {
+        min-height: 80%;
+        max-width: 30%;
+        min-width: 30%;
+        background-color: rgba(202, 202, 202, 0.281);
+
+        .body
+        {
+            .inputs
+            {
+                margin-top: 20%;
+                mat-form-field
+                {
+                    width: 100%;
+                }
+    
+                .button
+                {
+                    display: flex;
+                    flex-direction: row-reverse;
+                }
+            }
+        }
+
+        .register
+        {
+            position: absolute;
+            bottom: 0;
+            margin-bottom: 10px;
+            font-size: 12px;
+
+            a
+            {
+                cursor: pointer;
+                color: blue;
+            }
+        }
+    }
+}
