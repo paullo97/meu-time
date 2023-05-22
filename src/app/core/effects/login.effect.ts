@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { verifyKey, verifyKeyError, verifyKeySuccess } from '../store/login/login.actions';
+import { logout, verifyKey, verifyKeyError, verifyKeySuccess } from '../store/login/login.actions';
 import { ResponseStatus } from '../services/model/responseLogin';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
@@ -42,6 +42,17 @@ export class LoginEffect
             }, 2000)
         })
     ), {dispatch: false });
+
+    logout$ = createEffect(() => this.actions$.pipe(
+        ofType(logout),
+        map(() =>
+        {
+            this.router.navigateByUrl('/');
+            this._snackBar.open('Logout Efetuado com Sucesso', undefined, {
+                duration: 1500
+            });
+        })
+    ), { dispatch: false });
 
     constructor(
         private readonly actions$: Actions,
