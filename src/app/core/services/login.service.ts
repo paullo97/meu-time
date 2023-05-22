@@ -14,7 +14,6 @@ export class LoginService
     public verifyKeyStatus(key: string): Observable<any>
     {
         const headerDict = {
-            // 'x-rapidapi-key': 'ca4ea7ee8bc6df7f82c6cddfb827e20b',
             'x-rapidapi-key': key,
             'x-rapidapi-host': 'v3.football.api-sports.io'
           }
