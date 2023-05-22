@@ -1,1 +1,79 @@
-<p>dashboard works!</p>
+<div class="container">
+    <mat-card class="card">
+        <mat-card-header>
+            <mat-card-title>Dashboard</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="logout">
+                <button mat-fab extended color="warn" (click)="logout()">
+                    <mat-icon>logout</mat-icon>
+                    Sair
+                </button>
+            </div>
+            <div class="body">
+                <div class="selects" *ngIf="(loading$ | async) === false">
+                    <mat-form-field>
+                        <mat-label>País</mat-label>
+                        <mat-select [(ngModel)]="selectCountry">
+                            <mat-option *ngFor="let country of (listCountrys$ | async)" [value]="country.name">
+                                <img [src]="country.flag" class="flag" with="15" height="15" >
+                                {{ country.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Season</mat-label>
+                        <mat-select [(ngModel)]="selectSeason">
+                            <mat-option *ngFor="let season of (listSeasons$ | async)" [value]="season">
+                                {{ season }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Liga</mat-label>
+                        <mat-select [(ngModel)]="selectLeague">
+                            <mat-option *ngFor="let league of (listLeague$ | async)" [value]="league.league.id">
+                                <img [src]="league.league.logo" class="flag" with="15" height="15" >
+                                {{ league.league.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Time</mat-label>
+                        <mat-select [(ngModel)]="selectTeam">
+                            <mat-option *ngFor="let team of (listTeams$ | async)" [value]="team.team.id">
+                                <img [src]="team.team.logo" class="flag" with="15" height="15" >
+                                {{ team.team.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <button mat-raised-button color="accent" (click)="clearFields()">Limpar</button>
+                </div>
+                
+                <div class="loading">
+                    <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+                </div>
+            </div>
+            <div class="body-dashboard" *ngIf="(loadingDashboard$ | async) === false">
+                <div class="players">
+                    <h3>Jogadores</h3>
+                    <div *ngFor="let player of (listPlayers$ | async)">
+                        <p>{{ player.player.name }}</p>
+                        <p>{{ player.player.age }}</p>
+                        <p>{{ player.player.nationality }}</p>
+                    </div>
+                </div>
+                <div class="lineup">
+                    <h3>Formação mais utilizada - {{ (mostLineup$ | async).formation }}</h3>
+                </div>
+            </div>
+            <div class="loading" *ngIf="loadingDashboard$ | async">
+                <mat-spinner></mat-spinner>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

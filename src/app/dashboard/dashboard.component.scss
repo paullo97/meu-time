@@ -1,0 +1,58 @@
+.container
+{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .card
+    {
+        min-height: 90%;
+        min-width: 95%;
+        background-color: rgba(202, 202, 202, 0.281);
+
+        .logout
+        {
+            display: flex;
+            justify-content: end;
+            margin-top: -36px;
+        }
+
+        .body
+        {
+            .selects
+            {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px;
+                margin-top: 40px;
+
+                mat-form-field
+                {
+                    width: 100%;
+                }
+
+                button
+                {
+                    margin-bottom: 25px;
+                    width: 25%;
+                }
+            }
+
+            .loading
+            {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20%;
+                
+                mat-spinner
+                {
+                    width: 45px !important;
+                    height: 45px !important;
+                }
+            }
+        }
+    }
+}
