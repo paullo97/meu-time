@@ -1,15 +1,9 @@
-export interface ResponseStatus {
-    get: string;
-    parameters: Array<any>;
-    errors: any;
-    results: number;
-    paging: Paging;
-    response: Response;
-}
+import { IResponse } from "./response.model";
 
-export interface Paging {
-    current: number;
-    total: number;
+
+export interface ResponseStatus extends IResponse
+{
+    response: Response;
 }
 
 export interface Response {
