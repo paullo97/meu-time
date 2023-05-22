@@ -6,6 +6,7 @@ export interface LoginStore
 {
     response: any; //FIX
     keyValid: boolean;
+    key: string;
     loading: boolean;
     error: ErrorPayload;
 }

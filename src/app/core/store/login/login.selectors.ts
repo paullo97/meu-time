@@ -12,3 +12,8 @@ export const getKeyValidated = createSelector(
     getLoginState,
     (store: LoginStore) => store.keyValid
 );
+
+export const getKey = createSelector(
+    getLoginState,
+    (store: LoginStore)  => store.key
+);

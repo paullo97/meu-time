@@ -18,3 +18,7 @@ export const verifyKeyError = createAction(
         error: ErrorPayload;
     }>()
 );
+
+export const logout = createAction(
+    `${storeTag} Logout System`
+);

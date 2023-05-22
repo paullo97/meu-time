@@ -1,19 +1,21 @@
-import { verifyKey, verifyKeyError, verifyKeySuccess } from "./login.actions";
+import { logout, verifyKey, verifyKeyError, verifyKeySuccess } from "./login.actions";
 import { LoginStore } from "./login.store";
 import { Action, ActionReducer, createReducer, on } from '@ngrx/store';
 
 export const initialState: Partial<LoginStore> = {
     loading: false,
     error: undefined,
-    keyValid: false
+    keyValid: false,
+    key: undefined
 };
 
 const reducer: ActionReducer<Partial<LoginStore>, Action> = createReducer(
     initialState,
-    on(verifyKey, (state) => ({
+    on(verifyKey, (state, action) => ({
         ...state,
         loading: true,
-        error: undefined
+        error: undefined,
+        key: action.key
     })),
     on(verifyKeySuccess, (state) => ({
         ...state,
@@ -24,7 +26,13 @@ const reducer: ActionReducer<Partial<LoginStore>, Action> = createReducer(
         ...state,
         loading: false,
         error: action.error,
-        keyValid: false
+        keyValid: false,
+        key: undefined
+    })),
+    on(logout, (state) => ({
+        ...state,
+        keyValid: false,
+        key: undefined
     }))
 );
 
