@@ -42,3 +42,8 @@ export const getMostLineup = createSelector(
     getDashboardState,
     (store: DashboardStore) => store.mostLineup
 );
+
+export const getTeamsStatistics = createSelector(
+    getDashboardState,
+    (store: DashboardStore) => store.teamStatistics
+);

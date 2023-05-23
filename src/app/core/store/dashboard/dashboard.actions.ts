@@ -67,17 +67,21 @@ export const loadPlayersSuccess = createAction(
     }>()
 );
 
-export const loadMostLineup = createAction(
-    `${storeTag} Load Most Lineup`,
+export const loadTeamStatistics = createAction(
+    `${storeTag} Load Team Statistics`,
     props<{
         team: string;
         league: string;
         season: string;
     }>()
 );
-export const loadMostLineupSuccess = createAction(
-    `${storeTag} Load Monst Lineup Success`,
+export const loadTeamStatisticsSuccess = createAction(
+    `${storeTag} Load Team Statistics Success`,
     props<{
         lineup: any; // FIX MODEL
+        totalPlayed: number;
+        totalWins: number;
+        totalLoses: number;
+        totalDraw: number;
     }>()
 );

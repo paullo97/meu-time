@@ -1,6 +1,6 @@
 import { Action, ActionReducer, createReducer, on } from '@ngrx/store';
 import { DashboardStore } from './dashboard.store';
-import { loadLeague, loadCountry, loadCountrySuccess, loadLeagueSuccess, loadTeam, loadTeamSuccess, loadSeason, loadSeasonSuccess, loadPlayers, loadPlayersSuccess, loadMostLineup, loadMostLineupSuccess } from './dashboard.actions';
+import { loadLeague, loadCountry, loadCountrySuccess, loadLeagueSuccess, loadTeam, loadTeamSuccess, loadSeason, loadSeasonSuccess, loadPlayers, loadPlayersSuccess, loadTeamStatistics, loadTeamStatisticsSuccess } from './dashboard.actions';
 
 export const initialState: Partial<DashboardStore> = {
     loading: true,
@@ -64,14 +64,20 @@ const reducer: ActionReducer<Partial<DashboardStore>, Action> = createReducer(
         loadingDashboard: false,
         players: action.players
     })),
-    on(loadMostLineup, (state) => ({
+    on(loadTeamStatistics, (state) => ({
         ...state,
         loadingDashboard: true
     })),
-    on(loadMostLineupSuccess, (state, action) => ({
+    on(loadTeamStatisticsSuccess, (state, action) => ({
         ...state,
         loadingDashboard: false,
-        mostLineup: action.lineup
+        mostLineup: action.lineup,
+        teamStatistics: {
+            totalDraw: action.totalDraw,
+            totalLoses: action.totalLoses,
+            totalPlayed: action.totalPlayed,
+            totalWins: action.totalWins
+        }
     }))
 );
 

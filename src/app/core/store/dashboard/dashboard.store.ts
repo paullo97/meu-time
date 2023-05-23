@@ -11,6 +11,12 @@ export interface DashboardStore
     season: Array<number>;
     players: Array<IPlayer>;
     mostLineup: any;
+    teamStatistics: {
+        totalPlayed: number;
+        totalWins: number;
+        totalDraw: number;
+        totalLoses: number;
+    }
     loading: boolean;
     loadingDashboard: boolean;
     error: ErrorPayload;
