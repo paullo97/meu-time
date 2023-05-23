@@ -19,7 +19,6 @@ export class SessionInterceptor implements HttpInterceptor
         this.store.select(getKey).pipe(take(1)).subscribe((data) => key = data);
 
         let headers = new HttpHeaders({'x-rapidapi-key': key, 'x-rapidapi-host':'v3.football.api-sports.io' });
-        console.log(headers);
         
         return next.handle(req.clone({
             url: req.url,
