@@ -42,9 +42,8 @@
 
             .loading
             {
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                position: absolute;
+                left: 50%;
                 margin-top: 20%;
                 
                 mat-spinner
@@ -53,6 +52,13 @@
                     height: 45px !important;
                 }
             }
+        }
+
+        .body-dashboard
+        {
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
         }
     }
 }

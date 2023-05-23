@@ -6,8 +6,8 @@ import { DialogLogoutComponent } from './dialog-logout/dialog-logout.component';
 import { logout } from '../core/store/login/login.actions';
 import { Observable, Subscription } from 'rxjs';
 import { DashboardStore } from '../core/store/dashboard/dashboard.store';
-import { loadCountry, loadPlayers, loadSeason, loadTeam } from '../core/store/dashboard/dashboard.actions';
-import { getCountrys, getLeague, getLoadingDashboardDown, getMostLineup, getPlayers, getSeasons, getTeam } from '../core/store/dashboard/dashboard.selectors';
+import { loadCountry, loadPlayers, loadSeason, loadTeam, loadTeamStatistics } from '../core/store/dashboard/dashboard.actions';
+import { getCountrys, getLeague, getLoadingDashboardDown, getMostLineup, getPlayers, getSeasons, getTeam, getTeamsStatistics } from '../core/store/dashboard/dashboard.selectors';
 import { getLoadingDashboard } from '../core/store/dashboard/dashboard.selectors';
 import { getKey } from '../core/store/login/login.selectors';
 import { loadLeague } from '../core/store/dashboard/dashboard.actions';
@@ -36,7 +36,8 @@ export class DashboardComponent implements OnInit, OnDestroy
   public loadingDashboard$: Observable<boolean> = this.dashboardStore.select(getLoadingDashboardDown);
   public listPlayers$: Observable<Array<IPlayer>> = this.dashboardStore.select(getPlayers);
   public mostLineup$: Observable<any> = this.dashboardStore.select(getMostLineup);
-  
+  public teamStatistic$: Observable<any> = this.dashboardStore.select(getTeamsStatistics);
+
   constructor(
     private readonly loginStore: Store<LoginStore>,
     private readonly dashboardStore: Store<DashboardStore>,
@@ -81,6 +82,7 @@ export class DashboardComponent implements OnInit, OnDestroy
   {
     this.Team = args;
     this.dashboardStore.dispatch(loadPlayers({ team: this.selectTeam, league: this.selectLeague, season: this.selectSeason }));
+    this.dashboardStore.dispatch(loadTeamStatistics({ team: this.selectTeam, league: this.selectLeague, season: this.selectSeason }));
   }
 
   public get selectTeam(): string
@@ -115,5 +117,10 @@ export class DashboardComponent implements OnInit, OnDestroy
     this.selectLeague = '';
     this.selectTeam = '';
     this.selectSeason = '';
+  }
+
+  public formatListPlayers(player: IPlayer): string
+  {
+    return `Nome: ${player.player.firstname} - Idade:${player.player.age} - Nac. ${player.player.nationality}`;
   }
 }
