@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit
 {
-  public key: string = '';
+  public key: string = 'ca4ea7ee8bc6df7f82c6cddfb827e20b';
   public loading$: Observable<boolean> = this.loginStore.select(getLoadingLogin);
   public keyValidated$: Observable<boolean> = this.loginStore.select(getKeyValidated);
 

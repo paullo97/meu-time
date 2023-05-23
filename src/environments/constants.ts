@@ -8,3 +8,5 @@ export const storeTools: Array<ModuleWithProviders<any>> = [
         name: 'Meu Time'
     })
   ];
+
+export const urlBase = 'https://v3.football.api-sports.io';

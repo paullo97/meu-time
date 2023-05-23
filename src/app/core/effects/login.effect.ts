@@ -13,7 +13,7 @@ export class LoginEffect
 {
     getStatus$ = createEffect(() => this.actions$.pipe(
         ofType(verifyKey),
-        switchMap(({ key }) => this.loginService.verifyKeyStatus(key)),
+        switchMap(() => this.loginService.verifyKeyStatus()),
         map((response: ResponseStatus) =>
         {
             if(!!response.errors.token)

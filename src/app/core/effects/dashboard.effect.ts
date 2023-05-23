@@ -12,22 +12,19 @@ import { getKey } from "../store/login/login.selectors";
 export class DashboardEffect {
     loadCountry$ = createEffect(() => this.actions$.pipe(
         ofType(loadCountry),
-        withLatestFrom(this.loginStore.select(getKey)),
-        switchMap(([_, key]) => this.dashboardService.getCountrys(key)),
+        switchMap(() => this.dashboardService.getCountrys()),
         map((response) => loadCountrySuccess({ countrys: response.response }))
     ));
 
     loadSeason$ = createEffect(() => this.actions$.pipe(
         ofType(loadSeason),
-        withLatestFrom(this.loginStore.select(getKey)),
-        switchMap(([_, key]) => this.dashboardService.getSeason(key)),
+        switchMap(() => this.dashboardService.getSeason()),
         map(({ response }) => loadSeasonSuccess({ seasons: response }))
     ));
 
     loadLeague$ = createEffect(() => this.actions$.pipe(
         ofType(loadLeague),
-        withLatestFrom(this.loginStore.select(getKey)),
-        switchMap(([{ countrySelected, season }, key]) => this.dashboardService.getLeague(countrySelected, season, key)),
+        switchMap(({ countrySelected, season }) => this.dashboardService.getLeague(countrySelected, season)),
         map((response) => loadLeagueSuccess({
             league: response.response.sort((league1: any, league2: any) => {
                 let fa = league1.league.name.toLowerCase(),
@@ -46,8 +43,7 @@ export class DashboardEffect {
 
     loadTeam$ = createEffect(() => this.actions$.pipe(
         ofType(loadTeam),
-        withLatestFrom(this.loginStore.select(getKey)),
-        switchMap(([{ countrySelected, leagueSelected, season }, key]) => this.dashboardService.getTeam(leagueSelected, countrySelected, season, key)),
+        switchMap(({ countrySelected, leagueSelected, season }) => this.dashboardService.getTeam(leagueSelected, countrySelected, season)),
         map((response) => loadTeamSuccess({ teams: response.response }))
     ));
 
