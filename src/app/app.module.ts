@@ -18,6 +18,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
 import { DialogLogoutComponent } from './dashboard/dialog-logout/dialog-logout.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { NgChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    NgChartsModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
