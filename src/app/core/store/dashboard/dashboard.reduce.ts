@@ -76,8 +76,10 @@ const reducer: ActionReducer<Partial<DashboardStore>, Action> = createReducer(
             totalDraw: action.totalDraw,
             totalLoses: action.totalLoses,
             totalPlayed: action.totalPlayed,
-            totalWins: action.totalWins
-        }
+            totalWins: action.totalWins,
+            goalsFor: action.goalsFor,
+            goalsAgaint: action.goalsAgaint
+        },
     }))
 );
 

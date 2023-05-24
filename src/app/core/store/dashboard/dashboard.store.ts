@@ -1,5 +1,5 @@
 import { ErrorPayload } from "../../services/model/error.model";
-import { Country, ILeague, IPlayer, ITeam } from "../../services/model/responseDashboard.model";
+import { Country, IGoals, ILeague, IPlayer, ITeam } from "../../services/model/responseDashboard.model";
 
 export const storeTag: string = '[Dashboard Store]';
 
@@ -16,6 +16,8 @@ export interface DashboardStore
         totalWins: number;
         totalDraw: number;
         totalLoses: number;
+        goalsFor: IGoals;
+        goalsAgaint: IGoals;
     }
     loading: boolean;
     loadingDashboard: boolean;

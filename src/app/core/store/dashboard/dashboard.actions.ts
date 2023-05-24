@@ -1,6 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { storeTag } from "./dashboard.store";
-import { Country, ILeague, IPlayer, ITeam } from "../../services/model/responseDashboard.model";
+import { Country, IGoals, ILeague, IPlayer, ITeam } from "../../services/model/responseDashboard.model";
 
 export const loadCountry = createAction(
     `${storeTag} Load Country`
@@ -83,5 +83,7 @@ export const loadTeamStatisticsSuccess = createAction(
         totalWins: number;
         totalLoses: number;
         totalDraw: number;
+        goalsFor: IGoals;
+        goalsAgaint: IGoals;
     }>()
 );
