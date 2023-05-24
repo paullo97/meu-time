@@ -7,13 +7,13 @@
             <div class="logout">
                 <button mat-fab extended color="warn" (click)="logout()">
                     <mat-icon>logout</mat-icon>
-                    Sair
+                    To go out
                 </button>
             </div>
             <div class="body">
                 <div class="selects" *ngIf="(loading$ | async) === false">
                     <mat-form-field>
-                        <mat-label>País</mat-label>
+                        <mat-label>Country</mat-label>
                         <mat-select [(ngModel)]="selectCountry">
                             <mat-option *ngFor="let country of (listCountrys$ | async)" [value]="country.name">
                                 <img [src]="country.flag" class="flag" with="15" height="15" >
@@ -32,7 +32,7 @@
                     </mat-form-field>
 
                     <mat-form-field>
-                        <mat-label>Liga</mat-label>
+                        <mat-label>League</mat-label>
                         <mat-select [(ngModel)]="selectLeague">
                             <mat-option *ngFor="let league of (listLeague$ | async)" [value]="league.league.id">
                                 <img [src]="league.league.logo" class="flag" with="15" height="15" >
@@ -42,7 +42,7 @@
                     </mat-form-field>
 
                     <mat-form-field>
-                        <mat-label>Time</mat-label>
+                        <mat-label>Team</mat-label>
                         <mat-select [(ngModel)]="selectTeam">
                             <mat-option *ngFor="let team of (listTeams$ | async)" [value]="team.team.id">
                                 <img [src]="team.team.logo" class="flag" with="15" height="15" >
@@ -51,7 +51,7 @@
                         </mat-select>
                     </mat-form-field>
 
-                    <button mat-raised-button color="accent" (click)="clearFields()">Limpar</button>
+                    <button mat-raised-button color="accent" (click)="clearFields()">Clean</button>
                 </div>
                 
                 <div class="loading">
@@ -62,9 +62,9 @@
             <div class="body-dashboard" *ngIf="(loadingDashboard$ | async) === false && (mostLineup$ | async).formation.length > 0">
                 <div class="players">
                     <div class="lineup">
-                        <h3>Formação mais utilizada - {{ (mostLineup$ | async).formation }}</h3>
+                        <h3>Most used formation - {{ (mostLineup$ | async).formation }}</h3>
                     </div>
-                    <h3>Jogadores</h3>
+                    <h3>Players</h3>
                     <div *ngFor="let player of (listPlayers$ | async)">
                         <p>{{ formatListPlayers(player) }}</p>
                     </div>
@@ -78,11 +78,11 @@
                 </canvas>
                 
                 <div class="statistics">
-                    <h3>Estatisticas</h3>
-                    <p>Total de Jogos - {{ (teamStatistic$ | async).totalPlayed }}</p>
-                    <p>Total de Jogos Ganhos - {{ (teamStatistic$ | async).totalWins }}</p>
-                    <p>Total de Jogos Perdidos - {{ (teamStatistic$ | async).totalDraw }}</p>
-                    <p>Total de Jogos Empatados - {{ (teamStatistic$ | async).totalLoses }}</p>
+                    <h3>Statistics</h3>
+                    <p>Total Games - {{ (teamStatistic$ | async).totalPlayed }}</p>
+                    <p>Total Games Won - {{ (teamStatistic$ | async).totalWins }}</p>
+                    <p>Total Games Lost - {{ (teamStatistic$ | async).totalDraw }}</p>
+                    <p>Total Tied Games - {{ (teamStatistic$ | async).totalLoses }}</p>
                 </div>
             </div>
             <div class="loading" *ngIf="loadingDashboard$ | async">

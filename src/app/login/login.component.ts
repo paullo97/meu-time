@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit
 
   public verifyKey(): void {
     if (this.key.trim().length === 0 || this.key.length < 32) {
-      this._snackBar.open('Preencha a Key corretamente', 'OK', {
+      this._snackBar.open('Fill in the Key correctly', 'OK', {
         duration: 1500
       });
       return;

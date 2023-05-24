@@ -18,13 +18,13 @@ export class LoginEffect
         {
             if(!!response.errors.token)
             {
-                this._snackBar.open('A Key é invalida, por favor revise-a', 'OK', {
+                this._snackBar.open('Key is invalid, please review it', 'OK', {
                     duration: 1500
                 });
                 return verifyKeyError({ error: { message: 'Key Invalida' } });
             }
 
-            this._snackBar.open('Key Valida, você será redirecionado para o Dashboard', 'OK', {
+            this._snackBar.open('Key Validates, you will be redirected to the Dashboard', 'OK', {
                 duration: 1500
             });
             return verifyKeySuccess();
@@ -48,7 +48,7 @@ export class LoginEffect
         map(() =>
         {
             this.router.navigateByUrl('/');
-            this._snackBar.open('Logout Efetuado com Sucesso', undefined, {
+            this._snackBar.open('Log Out Successfully', undefined, {
                 duration: 1500
             });
         })

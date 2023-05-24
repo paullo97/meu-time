@@ -7,13 +7,13 @@
     <mat-card class="card">
         <mat-card-header>
             <mat-card-title>Login</mat-card-title>
-            <mat-card-subtitle>Bem vindo ao Meu Time</mat-card-subtitle>
+            <mat-card-subtitle>Welcome to My Time</mat-card-subtitle>
         </mat-card-header>
 
         <mat-card-content>
             <div class="body">
                 <p>
-                    Aqui você precisa inserir a sua <i>Key</i> para prosseguir e usufruir das informações do sistema
+                    Here you need to enter your <i>Key</i> to proceed and enjoy the system information
                 </p>
 
                 <div class="inputs">
@@ -25,7 +25,7 @@
                         </button>
                     </mat-form-field>
                     <div class="button">
-                        <button *ngIf="(loading$ | async) === false" mat-flat-button color="primary" (click)="verifyKey()">Acessar</button>
+                        <button *ngIf="(loading$ | async) === false" mat-flat-button color="primary" (click)="verifyKey()">Access</button>
                         <mat-spinner *ngIf="loading$ | async"></mat-spinner>
                     </div>
 
@@ -33,7 +33,7 @@
             </div>
 
             <p class="register">
-                Caso você ainda não tenha a <i>key</i> por gentileza clique <a href="https://dashboard.api-football.com/register">aqui</a>
+                If you still don't have the <i>key</i> please click <a href="https://dashboard.api-football.com/register">Here</a>
             </p>
         </mat-card-content>
     </mat-card>
