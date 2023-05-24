@@ -86,3 +86,23 @@ export interface IPlayer {
     injured: boolean;
     photo: string;
   }
+
+  export interface IGoals {
+    minute: Minute
+  }
+  
+  export interface Minute {
+    "0-15": IInfoPercentage;
+    "16-30": IInfoPercentage;
+    "31-45": IInfoPercentage;
+    "46-60": IInfoPercentage;
+    "61-75": IInfoPercentage;
+    "76-90": IInfoPercentage;
+    "91-105": IInfoPercentage;
+    "106-120": IInfoPercentage;
+  }
+
+  export interface IInfoPercentage {
+    total: number
+    percentage: string
+  }
