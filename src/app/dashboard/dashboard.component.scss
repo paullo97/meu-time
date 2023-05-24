@@ -54,10 +54,17 @@
             }
         }
 
+        .chart
+        {
+            width: 40% !important;
+            height: 40% !important;
+        }
+
         .body-dashboard
         {
             display: flex;
-            align-items: baseline;
+            justify-content: space-around;
+            margin-top: 30px;
             gap: 20px;
         }
     }

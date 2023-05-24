@@ -11,7 +11,10 @@ import { getCountrys, getLeague, getLoadingDashboardDown, getMostLineup, getPlay
 import { getLoadingDashboard } from '../core/store/dashboard/dashboard.selectors';
 import { getKey } from '../core/store/login/login.selectors';
 import { loadLeague } from '../core/store/dashboard/dashboard.actions';
-import { Country, ILeague, IPlayer, ITeam } from '../core/services/model/responseDashboard.model';
+import { Country, IGoals, ILeague, IPlayer, ITeam } from '../core/services/model/responseDashboard.model';
+import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
+import { notNullPipe } from 'src/environments/constants';
+import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'app-dashboard',
@@ -38,6 +41,30 @@ export class DashboardComponent implements OnInit, OnDestroy
   public mostLineup$: Observable<any> = this.dashboardStore.select(getMostLineup);
   public teamStatistic$: Observable<any> = this.dashboardStore.select(getTeamsStatistics);
 
+  // Graph
+  public barChartOptions: ChartConfiguration['options'] = {
+    responsive: false,
+    plugins: {
+      legend: {
+        display: true,
+      },
+      datalabels: {
+        anchor: 'end',
+        align: 'end'
+      }
+    }
+  };
+
+  public radarChartType: ChartType = 'bar';
+  public radarChartLabels: string[] = ['0-15', '16-30', '31-45', '46-60', '61-75', '76-90', '91-105', '106-120'];
+  public radarChartData: ChartData<'bar'> = {
+    labels: this.radarChartLabels,
+    datasets: []
+  };
+  public barChartPlugins = [
+    DataLabelsPlugin
+  ];
+  
   constructor(
     private readonly loginStore: Store<LoginStore>,
     private readonly dashboardStore: Store<DashboardStore>,
@@ -93,6 +120,21 @@ export class DashboardComponent implements OnInit, OnDestroy
   public ngOnInit(): void
   {
     this.dashboardStore.dispatch(loadCountry());
+
+    this.sub.add(
+      this.teamStatistic$.pipe(notNullPipe).subscribe(({ goalsFor, goalsAgaint}) =>
+      {
+        this.radarChartData.datasets.push({
+          data: Object.values((goalsFor as IGoals)).map((obj) => obj.total === null ? 0 : obj.total),
+          label: 'For'
+        })
+
+        this.radarChartData.datasets.push({
+          data: Object.values((goalsAgaint as IGoals)).map((obj) => obj.total === null ? 0 : obj.total),
+          label: 'Againt'
+        })
+      })
+    );
   }
 
   public ngOnDestroy(): void {
