@@ -65,7 +65,9 @@ export class DashboardEffect {
             totalDraw: response.fixtures.draws.total,
             totalLoses: response.fixtures.loses.total,
             totalPlayed: response.fixtures.played.total,
-            totalWins: response.fixtures.wins.total
+            totalWins: response.fixtures.wins.total,
+            goalsFor: response.goals.for.minute,
+            goalsAgaint: response.goals.against.minute
         }))
     ));
 
